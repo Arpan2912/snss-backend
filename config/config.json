@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "arpan",
+    "password": "123",
+    "database": "snss",
+    "host": "localhost",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "arpan",
+    "password": "123",
+    "database": "snss",
+    "host": "localhost",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "arpan",
+    "password": "123",
+    "database": "snss",
+    "host": "localhost",
+    "dialect": "postgres"
+  }
+}
