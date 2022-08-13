@@ -16,6 +16,7 @@ const updateBlog = async (req, res) => {
 		await blogService.updateBlog(req, res);
 		return prepareAndSendResponse(res, 200, null, 'Blog updated successfully')
 	} catch (e) {
+		console.log("e", e)
 		return prepareAndSendResponse(res, 500, null, 'Something went wrong')
 	}
 }

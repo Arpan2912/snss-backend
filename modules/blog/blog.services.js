@@ -16,24 +16,41 @@ const addBlog = async (req, res) => {
 }
 
 const updateBlog = async (req, res) => {
-	const { poster_image, content } = req.body;
-	const obj = {
-		updated_at: new Date()
+	const { uuid, content, title, description, poster_image } = req.body;
+	let posterImage = null;
+	if (req.file) {
+		posterImage = req.file.key;
 	}
-	if (poster_image) {
-		obj.poster_image = poster_image;
+	console.log("uuid", uuid)
+	console.log(" req.body", req.body)
+	const obj = {
+		uuid,
+		updated_at: new Date().toISOString()
+	}
+	if (posterImage) {
+		obj.poster_image = posterImage;
 	}
 	if (content) {
 		obj.content = content;
+	}
+	if (title) {
+		obj.title = title;
+	}
+	if (description) {
+		obj.description = description;
 	}
 	await blogDbService.updateBlog(obj)
 }
 
 const getBlogs = async (req, res) => {
-	const { page = 1, limit = 10 } = req.query;
+	const { page = 1, limit = 6, search = null } = req.query;
+
 	const replacements = {
 		offset: (+page - 1) * +limit,
 		limit
+	}
+	if (search) {
+		replacements.search = search;
 	}
 	const data = await blogDbService.getBlogs(replacements)
 	console.log("Data", data);

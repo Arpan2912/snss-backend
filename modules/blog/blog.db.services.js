@@ -14,7 +14,7 @@ const getBlogDetail = async (replacement) => {
 }
 
 const getBlogs = async (replacement) => {
-    return executeQuery(blogQuery.getBlogs, replacement);
+    return executeQuery(blogQuery.getBlogs(replacement), replacement);
 }
 
 module.exports = {
