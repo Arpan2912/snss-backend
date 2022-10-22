@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('blog', {
+    await queryInterface.createTable('contacts', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -13,27 +13,27 @@ module.exports = {
         defaultValue: Sequelize.literal('uuid_generate_v4()'),
         type: Sequelize.UUID
       },
-      poster_image: {
-        type: Sequelize.STRING
-      },
-      title: {
+      first_name: {
         allowNull: false,
         type: Sequelize.STRING
       },
-      description: {
+      last_name: {
         allowNull: false,
         type: Sequelize.TEXT
       },
-      content: {
-        allowNull: false,
-        type: Sequelize.TEXT
+      email: {
+        type: Sequelize.STRING
       },
-      category: {
-        allowNull: true,
-        type: Sequelize.TEXT
+      phone: {
+        type: Sequelize.STRING
       },
-      likes: {
-        type: Sequelize.INTEGER
+      email_subscription: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: true
+      },
+      msg_subscription: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: true
       },
       is_active: {
         type: Sequelize.BOOLEAN,
@@ -54,6 +54,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('blog');
+    await queryInterface.dropTable('contacts');
   }
 };

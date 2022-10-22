@@ -5,18 +5,19 @@ const addBlog = async (req, res) => {
 	console.log("req.biody", req.body);
 	console.log("req.file", req.file);
 	const posterImage = req.file.key;
-	const { title, content, description } = req.body;
+	const { title, content, description, category = null } = req.body;
 	const obj = {
 		poster_image: posterImage,
 		title,
 		content,
-		description
+		description,
+		category
 	}
 	await blogDbService.addBlog(obj)
 }
 
 const updateBlog = async (req, res) => {
-	const { uuid, content, title, description, poster_image } = req.body;
+	const { uuid, content, title, description, poster_image, category } = req.body;
 	let posterImage = null;
 	if (req.file) {
 		posterImage = req.file.key;
@@ -38,6 +39,9 @@ const updateBlog = async (req, res) => {
 	}
 	if (description) {
 		obj.description = description;
+	}
+	if (category) {
+		obj.category = category;
 	}
 	await blogDbService.updateBlog(obj)
 }

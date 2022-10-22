@@ -1,5 +1,5 @@
 module.exports = {
-    addBlog: `insert into blog (poster_image, content,title,description) values (:poster_image, :content,:title,:description)`,
+    addBlog: `insert into blog (poster_image, content,title,description,category) values (:poster_image, :content,:title,:description,:category)`,
     updateBlog: (replacements) => {
         console.log("replacements", replacements)
         let q = `update blog set updated_at= :updated_at`
@@ -14,6 +14,9 @@ module.exports = {
         }
         if (replacements.hasOwnProperty('description')) {
             q += `, description = :description`
+        }
+        if (replacements.hasOwnProperty('category')) {
+            q += `, category = :category`
         }
         if (replacements.hasOwnProperty('likes')) {
             q += `, likes = :likes`
@@ -30,7 +33,7 @@ module.exports = {
     getBlogs: (replacements) => {
         let q = `select * from blog `
         if (replacements.search) {
-            q+= `where title like %${replacements.search} or description like %${replacements.search}` 
+            q+= `where title like %${replacements.search} or description like %${replacements.search} or category like %${replacements.search}` 
         }
         q += `order by created_at offset :offset limit :limit`
         return q;
