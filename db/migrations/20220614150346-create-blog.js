@@ -10,7 +10,7 @@ module.exports = {
       },
       uuid: {
         allowNull: false,
-        defaultValue: Sequelize.literal('uuid_generate_v4()'),
+        defaultValue: Sequelize.literal('public.uuid_generate_v4()'),
         type: Sequelize.UUID
       },
       poster_image: {
