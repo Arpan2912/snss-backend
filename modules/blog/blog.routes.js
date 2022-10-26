@@ -6,13 +6,12 @@ const multer = require('multer')
 const multerS3 = require('multer-s3')
 const aws = require('aws-sdk');
 const blogController = require('./blog.controller');
+const { BUCKET_NAME } = process.env;
 
 var router = express.Router();
 
 const getS3Config = () => {
-	const credentials = new aws.SharedIniFileCredentials({
-		profile: 'arpan-shah-2995',
-	});
+	const credentials = new aws.SharedIniFileCredentials();
 	aws.config.credentials = credentials;
 
 	return new aws.S3({
@@ -25,7 +24,7 @@ const getS3Config = () => {
 const upload = multer({
 	storage: multerS3({
 		s3: getS3Config(),
-		bucket: 'arpan-first-bucket',
+		bucket: BUCKET_NAME,
 		metadata: function (req, file, cb) {
 			cb(null, { fieldName: file.fieldname });
 		},

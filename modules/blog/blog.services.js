@@ -1,5 +1,6 @@
 const blogDbService = require('./blog.db.services');
-const bucketUrl = `https://arpan-first-bucket.s3.ap-south-1.amazonaws.com`;
+const { BUCKET_NAME } = process.env;
+const bucketUrl = `https://${BUCKET_NAME}.s3.ap-south-1.amazonaws.com`;
 
 const addBlog = async (req, res) => {
 	console.log("req.biody", req.body);
