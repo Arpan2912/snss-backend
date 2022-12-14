@@ -71,10 +71,11 @@ const getBlog = async (req, res) => {
 	const replacements = {
 		uuid
 	}
-	const data = blogDbService.getBlogDetail(replacements)
+	const data = await blogDbService.getBlogDetail(replacements)
+	console.log("blog detail", data)
 	const responseObj = {
 		bucketUrl,
-		blog: data[0]
+		blog: data && data[0] && data[0][0] ? data[0][0] : null
 	}
 	return responseObj;
 }
