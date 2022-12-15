@@ -72,11 +72,18 @@ const generateBlogPreview = async (req, res) => {
       <meta property="twitter:title" content="${blogData.title}" />
       <meta property="twitter:description" content="${blogData.description}" />
 			<meta property="twitter:image" content="${bucketUrl}/${blogData.poster_image}" />
+
+			<meta http-equiv="refresh" content="2;url=https://www.snssindia.in/#/blog/${blogId}" />
+			<script>
+				function redirectToPage(){
+					window.location.replace("https://www.snssindia.in/#/blog/${blogId}");
+				}
+			</script>
     </head>
-    <body>
+    <body onload="redirectToPage()">
 			<div>
-      	<h1><a href="https://www.snssindia.in/#/blog/${blogId}">${blogData.title}</a></h1>
-				<div><a href="https://www.snssindia.in/#/blog/${blogId}">${blogData.description}</a></div>
+      	<h1>${blogData.title}</h1>
+				<div>${blogData.description}</div>
 			</div>
     </body>
     </html>
