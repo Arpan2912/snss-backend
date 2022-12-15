@@ -72,7 +72,10 @@ const generateBlogPreview = async (req, res) => {
       <meta property="twitter:image" content="${bucketUrl}/${blogData.poster_image}" />
     </head>
     <body>
-      <h1>${blogData.description}</h1>
+			<div>
+      	<h1><a href="https://www.snssindia.in/#/blog/${blogId}">${blogData.title}</a></h1>
+				<div><a href="https://www.snssindia.in/#/blog/${blogId}">${blogData.description}</a></div>
+			</div>
     </body>
     </html>
   `);
