@@ -65,11 +65,13 @@ const generateBlogPreview = async (req, res) => {
       <title>${blogData.title}</title>
       
       <meta property="og:title" content="${blogData.title}" />
+      <meta property="og:description" content="${blogData.description}" />
       <meta property="og:image" content="${bucketUrl}/${blogData.poster_image}" />
 
       <meta property="twitter:card" content="summary_large_image" />
       <meta property="twitter:title" content="${blogData.title}" />
-      <meta property="twitter:image" content="${bucketUrl}/${blogData.poster_image}" />
+      <meta property="twitter:description" content="${blogData.description}" />
+			<meta property="twitter:image" content="${bucketUrl}/${blogData.poster_image}" />
     </head>
     <body>
 			<div>
