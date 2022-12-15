@@ -1,5 +1,8 @@
 const blogService = require('./blog.services');
+const blogDbService = require('./blog.db.services');
 const { prepareAndSendResponse } = require('../../utils');
+const { BUCKET_NAME } = process.env;
+const bucketUrl = `https://${BUCKET_NAME}.s3.ap-south-1.amazonaws.com`;
 
 const addBlog = async (req, res) => {
 	try {
@@ -42,9 +45,57 @@ const getBlogs = async (req, res) => {
 	}
 }
 
+const generateBlogPreview = async (req, res) => {
+
+	const { blogId } = req.params;
+
+	const replacements = {
+		uuid: blogId
+	}
+	const data = await blogDbService.getBlogDetail(replacements)
+	console.log("blog detail", data)
+	let blogData = data && data[0] && data[0][0] ? data[0][0] : null;
+	if (blogData) {
+		res.send(`
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>${blogData.title}</title>
+      
+      <meta property="og:title" content="${blogData.title}" />
+      <meta property="og:image" content="${bucketUrl}/${blogData.poster_image}" />
+
+      <meta property="twitter:card" content="summary_large_image" />
+      <meta property="twitter:title" content="${blogData.title}" />
+      <meta property="twitter:image" content="${bucketUrl}/${blogData.poster_image}" />
+    </head>
+    <body>
+      <h1>${blogData.description}</h1>
+    </body>
+    </html>
+  `);
+	} else {
+		res.send(`
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+      <h1></h1>
+    </body>
+    </html>
+  `)
+	}
+}
+
 module.exports = {
 	addBlog,
 	updateBlog,
 	getBlog,
-	getBlogs
+	getBlogs,
+	generateBlogPreview
 }

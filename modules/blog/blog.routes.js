@@ -39,6 +39,7 @@ router.put('/', upload.single('image'), blogController.updateBlog)
 // router.put('/blog', blogController.updateBlogImage)
 router.get('/', blogController.getBlog)
 router.get('/blogs', blogController.getBlogs)
+router.get("/:blogId", blogController.generateBlogPreview)
 
 
 module.exports = router;
