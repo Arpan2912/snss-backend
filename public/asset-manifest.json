@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/static/css/main.9dc1ec44.css",
-    "main.js": "/static/js/main.34944445.js",
+    "main.css": "/static/css/main.75b3de52.css",
+    "main.js": "/static/js/main.2700555b.js",
     "static/js/787.186c2bae.chunk.js": "/static/js/787.186c2bae.chunk.js",
     "static/media/Calibri.ttf": "/static/media/Calibri.29c57b05b7345f94042a.ttf",
     "static/media/Cambria-Font-For-Android.ttf": "/static/media/Cambria-Font-For-Android.767a1ee46c53d53447c2.ttf",
     "index.html": "/index.html",
-    "main.9dc1ec44.css.map": "/static/css/main.9dc1ec44.css.map",
-    "main.34944445.js.map": "/static/js/main.34944445.js.map",
+    "main.75b3de52.css.map": "/static/css/main.75b3de52.css.map",
+    "main.2700555b.js.map": "/static/js/main.2700555b.js.map",
     "787.186c2bae.chunk.js.map": "/static/js/787.186c2bae.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.9dc1ec44.css",
-    "static/js/main.34944445.js"
+    "static/css/main.75b3de52.css",
+    "static/js/main.2700555b.js"
   ]
 }
