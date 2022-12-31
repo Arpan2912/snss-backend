@@ -41,9 +41,9 @@ module.exports = {
         return q;
     },
     getBlogs: (replacements) => {
-        let q = `select * from blog where is_published=true and `
+        let q = `select * from blog where is_published=true and is_active=true and is_deleted=false `
         if (replacements.search) {
-            q+= `(title like %${replacements.search} or description like %${replacements.search} or category like %${replacements.search})` 
+            q+= `and (title like %${replacements.search} or description like %${replacements.search} or category like %${replacements.search})` 
         }
         q += `order by created_at offset :offset limit :limit`
         return q;
