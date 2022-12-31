@@ -6,19 +6,24 @@ const addBlog = async (req, res) => {
 	console.log("req.biody", req.body);
 	console.log("req.file", req.file);
 	const posterImage = req.file.key;
-	const { title, content, description, category = null } = req.body;
+	const { title, content, description, category = null, subCategory, createdBy, createdByEmail, isPublished = false } = req.body;
 	const obj = {
 		poster_image: posterImage,
 		title,
 		content,
 		description,
-		category
+		category,
+		sub_category: subCategory,
+		created_by: createdBy,
+		created_by_email: createdByEmail,
+		is_published: isPublished
 	}
 	await blogDbService.addBlog(obj)
 }
 
 const updateBlog = async (req, res) => {
-	const { uuid, content, title, description, poster_image, category } = req.body;
+	const { uuid, content, title, description, poster_image, category, subCategory, createdBy, createdByEmail } = req.body;
+	let { isPublished = null, isDeleted = null } = req.body;
 	let posterImage = null;
 	if (req.file) {
 		posterImage = req.file.key;
@@ -44,12 +49,33 @@ const updateBlog = async (req, res) => {
 	if (category) {
 		obj.category = category;
 	}
+	if (subCategory) {
+		obj.sub_category = subCategory;
+	}
+	if (createdBy) {
+		obj.created_by = createdBy;
+	}
+	if (createdByEmail) {
+		obj.created_by_email = createdByEmail;
+	}
+	if (isPublished !== null) {
+		obj.is_published = isPublished;
+	}
+	if (isDeleted !== null) {
+		obj.is_deleted = isDeleted;
+	}
 	await blogDbService.updateBlog(obj)
 }
 
 const getBlogs = async (req, res) => {
 	const { page = 1, limit = 6, search = null } = req.query;
-
+	let { is_admin = false } = req.query;
+	if (is_admin === 'true') {
+		is_admin = true
+	}
+	if (is_admin === 'false') {
+		is_admin = false
+	}
 	const replacements = {
 		offset: (+page - 1) * +limit,
 		limit
@@ -57,7 +83,12 @@ const getBlogs = async (req, res) => {
 	if (search) {
 		replacements.search = search;
 	}
-	const data = await blogDbService.getBlogs(replacements)
+	let data = null;
+	if (is_admin) {
+		data = await blogDbService.getBlogsAdmin(replacements)
+	} else {
+		data = await blogDbService.getBlogs(replacements)
+	}
 	console.log("Data", data);
 	const responseObj = {
 		bucketUrl,

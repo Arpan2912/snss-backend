@@ -16,10 +16,14 @@ const getBlogDetail = async (replacement) => {
 const getBlogs = async (replacement) => {
     return executeQuery(blogQuery.getBlogs(replacement), replacement);
 }
+const getBlogsAdmin = async (replacement) => {
+    return executeQuery(blogQuery.getBlogsAdmin(replacement), replacement);
+}
 
 module.exports = {
     addBlog,
     updateBlog,
     getBlogDetail,
-    getBlogs
+    getBlogs,
+    getBlogsAdmin
 }

@@ -35,6 +35,20 @@ module.exports = {
       likes: {
         type: Sequelize.INTEGER
       },
+      sub_category: {
+        allowNull: true,
+        type: Sequelize.TEXT
+      },
+      created_by: {
+        type: Sequelize.TEXT
+      },
+      created_by_email: {
+        type: Sequelize.TEXT
+      },
+      is_published: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
+      },
       is_active: {
         type: Sequelize.BOOLEAN,
         defaultValue: true
