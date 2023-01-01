@@ -49,7 +49,7 @@ module.exports = {
         return q;
     },
     getBlogsAdmin: (replacements) => {
-        let q = `select * from blog where is_deleted=false`
+        let q = `select * from blog where is_deleted=false `
         if (replacements.search) {
             q += ` and (title like %${replacements.search} or description like %${replacements.search} or category like %${replacements.search})`
         }
