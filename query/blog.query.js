@@ -43,17 +43,17 @@ module.exports = {
     getBlogs: (replacements) => {
         let q = `select * from blog where is_published=true and is_active=true and is_deleted=false `
         if (replacements.search) {
-            q+= `and (title like %${replacements.search} or description like %${replacements.search} or category like %${replacements.search})` 
+            q += `and (title like %${replacements.search} or description like %${replacements.search} or category like %${replacements.search})`
         }
-        q += `order by created_at offset :offset limit :limit`
+        q += `order by created_at desc offset :offset limit :limit`
         return q;
     },
     getBlogsAdmin: (replacements) => {
-        let q = `select * from blog `
+        let q = `select * from blog where is_deleted=false`
         if (replacements.search) {
-            q+= `where title like %${replacements.search} or description like %${replacements.search} or category like %${replacements.search}` 
+            q += ` and (title like %${replacements.search} or description like %${replacements.search} or category like %${replacements.search})`
         }
-        q += `order by created_at`
+        q += `order by created_at desc`
         return q;
     },
     getBlogDetail: `select * from blog where uuid = :uuid`
