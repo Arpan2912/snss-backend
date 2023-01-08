@@ -56,9 +56,8 @@ const getBlogAttachments = async (req, res) => {
 }
 
 const generateBlogPreview = async (req, res) => {
-
+	const type = req.baseUrl.includes('news') ? 'news' : 'blog';
 	const { blogId } = req.params;
-
 	const replacements = {
 		uuid: blogId
 	}
@@ -83,10 +82,10 @@ const generateBlogPreview = async (req, res) => {
       <meta property="twitter:description" content="${blogData.description}" />
 			<meta property="twitter:image" content="${bucketUrl}/${blogData.poster_image}" />
 
-			<meta http-equiv="refresh" content="2;url=https://www.snssindia.in/#/blog/${blogId}" />
+			<meta http-equiv="refresh" content="2;url=https://www.snssindia.in/#/${type}/${blogId}" />
 			<script>
 				function redirectToPage(){
-					window.location.replace("https://www.snssindia.in/#/blog/${blogId}");
+					window.location.replace("https://www.snssindia.in/#/${type}/${blogId}");
 				}
 			</script>
     </head>
