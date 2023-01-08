@@ -29,17 +29,26 @@ const upload = multer({
 			cb(null, { fieldName: file.fieldname });
 		},
 		key: function (req, file, cb) {
-			cb(null, `${Date.now().toString()}.jpg`)
+			console.log("file", file);
+			cb(null, `${Date.now().toString()}-${file.originalname}`)
 		},
 	})
 })
 
-router.post('/', upload.single('image'), blogController.addBlog)
-router.put('/', upload.single('image'), blogController.updateBlog)
+router.post('/', upload.fields([
+	{ name: 'image', maxCount: 1 },
+	{ name: 'attachment', maxCount: 5 },
+]), blogController.addBlog)
+// router.post('/', upload.single('image'), blogController.addBlog)
+router.put('/', upload.fields([
+	{ name: 'image', maxCount: 1 },
+	{ name: 'attachment', maxCount: 5 },
+]), blogController.updateBlog)
 // router.put('/blog', blogController.updateBlogImage)
 router.get('/', blogController.getBlog)
 router.get('/blogs', blogController.getBlogs)
 router.get("/:blogId", blogController.generateBlogPreview)
+router.get("/blog-attachments", blogController.generateBlogPreview)
 
 
 module.exports = router;

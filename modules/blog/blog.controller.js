@@ -45,6 +45,16 @@ const getBlogs = async (req, res) => {
 	}
 }
 
+const getBlogAttachments = async (req, res) => {
+	try {
+		const data = await blogService.getBlogAttachments(req, res);
+		console.log("data", data)
+		return prepareAndSendResponse(res, 200, data, 'Get blogs successfully')
+	} catch (e) {
+		return prepareAndSendResponse(res, 500, null, 'Something went wrong')
+	}
+}
+
 const generateBlogPreview = async (req, res) => {
 
 	const { blogId } = req.params;
@@ -109,5 +119,6 @@ module.exports = {
 	updateBlog,
 	getBlog,
 	getBlogs,
-	generateBlogPreview
+	generateBlogPreview,
+	getBlogAttachments
 }

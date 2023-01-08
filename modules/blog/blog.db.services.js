@@ -25,5 +25,5 @@ module.exports = {
     updateBlog,
     getBlogDetail,
     getBlogs,
-    getBlogsAdmin
+    getBlogsAdmin,
 }

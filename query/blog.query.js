@@ -1,6 +1,8 @@
 module.exports = {
-    addBlog: `insert into blog (poster_image, content,title,description,category,sub_category,created_by,created_by_email,is_published)
-     values (:poster_image, :content,:title,:description,:category,:sub_category,:created_by,:created_by_email,:is_published)`,
+    addBlog: `insert into blog (poster_image, content,title,description,category,sub_category,type,created_by,created_by_email,is_published)
+     values (:poster_image, :content,:title,:description,:category,:sub_category,:type,:created_by,:created_by_email,:is_published)
+     returning id
+     `,
     updateBlog: (replacements) => {
         console.log("replacements", replacements)
         let q = `update blog set updated_at= :updated_at`
@@ -19,11 +21,14 @@ module.exports = {
         if (replacements.hasOwnProperty('category')) {
             q += `, category = :category`
         }
+        if (replacements.hasOwnProperty('sub_category')) {
+            q += `, sub_category = :sub_category`
+        }
         if (replacements.hasOwnProperty('likes')) {
             q += `, likes = :likes`
         }
-        if (replacements.hasOwnProperty('sub_category')) {
-            q += `, sub_category = :sub_category`
+        if (replacements.hasOwnProperty('type')) {
+            q += `, type = :type`
         }
         if (replacements.hasOwnProperty('created_by')) {
             q += `, created_by = :created_by`
@@ -43,7 +48,10 @@ module.exports = {
     getBlogs: (replacements) => {
         let q = `select * from blog where is_published=true and is_active=true and is_deleted=false `
         if (replacements.search) {
-            q += `and (title like %${replacements.search} or description like %${replacements.search} or category like %${replacements.search})`
+            q += `and (title like %${replacements.search} or description like %${replacements.search} or category like %${replacements.search}) `
+        }
+        if (replacements.type) {
+            q += `and type=:type `
         }
         q += `order by created_at desc offset :offset limit :limit`
         return q;

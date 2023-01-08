@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('blog', {
+    await queryInterface.createTable('blog_attachments', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -13,44 +13,19 @@ module.exports = {
         defaultValue: Sequelize.literal('public.uuid_generate_v4()'),
         type: Sequelize.UUID
       },
-      poster_image: {
-        type: Sequelize.STRING
-      },
-      title: {
+      blog_id: {
         allowNull: false,
-        type: Sequelize.STRING
-      },
-      description: {
-        allowNull: false,
-        type: Sequelize.TEXT
-      },
-      content: {
-        allowNull: false,
-        type: Sequelize.TEXT
-      },
-      category: {
-        allowNull: true,
-        type: Sequelize.TEXT
-      },
-      likes: {
         type: Sequelize.INTEGER
       },
-      sub_category: {
-        allowNull: true,
+      attachment: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      attachment_mimetype: {
         type: Sequelize.TEXT
       },
-      created_by: {
-        type: Sequelize.TEXT
-      },
-      created_by_email: {
-        type: Sequelize.TEXT
-      },
-      type: {
-        type: Sequelize.TEXT
-      },
-      is_published: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: false
+      attachment_size: {
+        type: Sequelize.INTEGER
       },
       is_active: {
         type: Sequelize.BOOLEAN,
@@ -71,6 +46,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('blog');
+    await queryInterface.dropTable('blog_attachments');
   }
 };

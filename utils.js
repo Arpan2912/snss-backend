@@ -21,7 +21,7 @@ const executeQuery = async (query, replacements, action = 'select') => {
 		replacements,
 		type: queryType
 	});
-	console.log("qResponse", qResponse)
+	// console.log("qResponse", qResponse)
 	return qResponse;
 }
 
