@@ -56,7 +56,7 @@ const getBlogAttachments = async (req, res) => {
 }
 
 const generateBlogPreview = async (req, res) => {
-	const type = req.baseUrl.includes('news') ? 'news' : 'blog';
+	const type = req.baseUrl.includes('news') ? 'news-detail' : 'blog-detail';
 	const { blogId } = req.params;
 	const replacements = {
 		uuid: blogId
@@ -69,7 +69,7 @@ const generateBlogPreview = async (req, res) => {
     <!DOCTYPE html>
     <html lang="en">
     <head>
-      <meta charset="UTF-8">
+      <meta charset="UTF-8">	
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>${blogData.title}</title>
       
@@ -85,7 +85,7 @@ const generateBlogPreview = async (req, res) => {
 			<meta http-equiv="refresh" content="2;url=https://www.snssindia.in/#/${type}/${blogId}" />
 			<script>
 				function redirectToPage(){
-					window.location.replace("https://www.snssindia.in/#/${type}/${blogId}");
+					window.location.replace("https://www.snssindia.in/${type}/${blogId}");
 				}
 			</script>
     </head>
