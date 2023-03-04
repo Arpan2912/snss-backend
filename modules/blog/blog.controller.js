@@ -57,9 +57,9 @@ const getBlogAttachments = async (req, res) => {
 
 const generateBlogPreview = async (req, res) => {
 	const type = req.baseUrl.includes('news') ? 'news-detail' : 'blog-detail';
-	const { blogId } = req.params;
+	const { url } = req.params;
 	const replacements = {
-		uuid: blogId
+		url
 	}
 	const data = await blogDbService.getBlogDetail(replacements)
 	console.log("blog detail", data)
@@ -82,10 +82,10 @@ const generateBlogPreview = async (req, res) => {
       <meta property="twitter:description" content="${blogData.description}" />
 			<meta property="twitter:image" content="${bucketUrl}/${blogData.poster_image}" />
 
-			<meta http-equiv="refresh" content="2;url=https://www.snssindia.in/#/${type}/${blogId}" />
+			<meta http-equiv="refresh" content="2;url=https://www.snssindia.in/#/${type}/${url}" />
 			<script>
 				function redirectToPage(){
-					window.location.replace("https://www.snssindia.in/${type}/${blogId}");
+					window.location.replace("https://www.snssindia.in/${type}/${url}");
 				}
 			</script>
     </head>

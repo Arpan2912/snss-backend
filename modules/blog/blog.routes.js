@@ -47,7 +47,7 @@ router.put('/', upload.fields([
 // router.put('/blog', blogController.updateBlogImage)
 router.get('/', blogController.getBlog)
 router.get('/blogs', blogController.getBlogs)
-router.get("/:blogId", blogController.generateBlogPreview)
+router.get("/:url", blogController.generateBlogPreview)
 router.get("/blog-attachments", blogController.generateBlogPreview)
 
 

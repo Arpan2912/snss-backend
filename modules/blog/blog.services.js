@@ -19,7 +19,7 @@ const addBlog = async (req, res) => {
 		description,
 		category,
 		type,
-		url: title.replace(" ", "-"),
+		url: title.replace(" ", "-").toLowerCase(),
 		sub_category: subCategory,
 		created_by: createdBy,
 		created_by_email: createdByEmail,
