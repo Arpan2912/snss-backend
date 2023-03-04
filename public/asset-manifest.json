@@ -1,18 +1,18 @@
 {
   "files": {
     "main.css": "/static/css/main.e1eff6b5.css",
-    "main.js": "/static/js/main.e23d6aeb.js",
+    "main.js": "/static/js/main.a2d97565.js",
     "static/js/787.186c2bae.chunk.js": "/static/js/787.186c2bae.chunk.js",
     "static/media/Calibri.ttf": "/static/media/Calibri.29c57b05b7345f94042a.ttf",
     "static/media/Cambria-Font-For-Android.ttf": "/static/media/Cambria-Font-For-Android.767a1ee46c53d53447c2.ttf",
     "static/media/logo.png": "/static/media/logo.dbf9fa5af3a5a8997ffe.png",
     "index.html": "/index.html",
     "main.e1eff6b5.css.map": "/static/css/main.e1eff6b5.css.map",
-    "main.e23d6aeb.js.map": "/static/js/main.e23d6aeb.js.map",
+    "main.a2d97565.js.map": "/static/js/main.a2d97565.js.map",
     "787.186c2bae.chunk.js.map": "/static/js/787.186c2bae.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e1eff6b5.css",
-    "static/js/main.e23d6aeb.js"
+    "static/js/main.a2d97565.js"
   ]
 }
