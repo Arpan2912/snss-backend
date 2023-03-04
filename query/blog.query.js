@@ -1,6 +1,6 @@
 module.exports = {
-    addBlog: `insert into blog (poster_image, content,title,description,category,sub_category,type,created_by,created_by_email,is_published)
-     values (:poster_image, :content,:title,:description,:category,:sub_category,:type,:created_by,:created_by_email,:is_published)
+    addBlog: `insert into blog (poster_image, content,title,description,category,sub_category,type,url,created_by,created_by_email,is_published)
+     values (:poster_image, :content,:title,:description,:category,:sub_category,:type,:url,:created_by,:created_by_email,:is_published)
      returning id
      `,
     updateBlog: (replacements) => {
@@ -64,5 +64,5 @@ module.exports = {
         q += `order by created_at desc`
         return q;
     },
-    getBlogDetail: `select * from blog where uuid = :uuid`
+    getBlogDetail: `select * from blog where url = :url `
 }

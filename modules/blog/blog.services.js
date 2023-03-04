@@ -19,6 +19,7 @@ const addBlog = async (req, res) => {
 		description,
 		category,
 		type,
+		url: title.replace(" ", "-"),
 		sub_category: subCategory,
 		created_by: createdBy,
 		created_by_email: createdByEmail,
@@ -161,9 +162,9 @@ const getBlogs = async (req, res) => {
 }
 
 const getBlog = async (req, res) => {
-	const { uuid } = req.query;
+	const { url } = req.query;
 	const replacements = {
-		uuid
+		url
 	}
 	const data = await blogDbService.getBlogDetail(replacements)
 	// console.log("blog detail", data)

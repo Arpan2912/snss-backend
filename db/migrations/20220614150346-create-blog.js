@@ -48,6 +48,10 @@ module.exports = {
       type: {
         type: Sequelize.TEXT
       },
+      url: {
+        type: Sequelize.TEXT,
+        allowNull: false,
+      },
       is_published: {
         type: Sequelize.BOOLEAN,
         defaultValue: false
