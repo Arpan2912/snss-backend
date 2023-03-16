@@ -27,10 +27,10 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json());
 app.use(cors());
 
-app.use('/', indexRouter);
-app.use('/blog', blogRouter);
-app.use('/news', blogRouter);
-
+// app.use('/', indexRouter);
+app.use('/api/blog', blogRouter);
+app.use('/api/news', blogRouter);
+app.use('/*',express.static(path.join(__dirname, 'public')));
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
