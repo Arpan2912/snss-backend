@@ -56,7 +56,7 @@ const getBlogAttachments = async (req, res) => {
 }
 
 const generateBlogPreview = async (req, res) => {
-	const type = req.baseUrl.includes('news') ? 'news-detail' : 'blog-detail';
+	const type = req.baseUrl.includes('news') ? 'news' : 'blog';
 	const { url } = req.params;
 	const replacements = {
 		url
