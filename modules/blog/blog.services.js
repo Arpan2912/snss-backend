@@ -51,7 +51,7 @@ const updateBlog = async (req, res) => {
 	const replacements = {
 		uuid
 	}
-	const data = await blogDbService.getBlogDetail(replacements)
+	const data = await blogDbService.getBlogDetailFromUuid(replacements)
 	console.log("blog detail", data)
 	if (data && data[0] && data[0][0]) {
 		const blogDetail = await data[0][0];
