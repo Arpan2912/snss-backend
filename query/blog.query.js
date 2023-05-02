@@ -64,5 +64,6 @@ module.exports = {
         q += `order by created_at desc`
         return q;
     },
-    getBlogDetail: `select * from blog where url = :url `
+    getBlogDetail: `select * from blog where url = :url`,
+    getBlogDetailFromUuid: `select * from blog where uuid = :uuid`
 }
