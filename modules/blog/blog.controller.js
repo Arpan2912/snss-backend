@@ -73,7 +73,9 @@ const generateBlogPreview = async (req, res) => {
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>${blogData.title}</title>
       
+      <meta property="og:url" content="https://www.snssindia.in/${type}/${url}" />
       <meta property="og:title" content="${blogData.title}" />
+      <meta property="og:type" content="article" />
       <meta property="og:description" content="${blogData.description}" />
       <meta property="og:image" content="${bucketUrl}/${blogData.poster_image}" />
 
@@ -82,7 +84,7 @@ const generateBlogPreview = async (req, res) => {
       <meta property="twitter:description" content="${blogData.description}" />
 			<meta property="twitter:image" content="${bucketUrl}/${blogData.poster_image}" />
 
-			<meta http-equiv="refresh" content="2;url=https://www.snssindia.in/#/${type}/${url}" />
+			<meta http-equiv="refresh" content="2;url=https://www.snssindia.in/${type}/${url}" />
 			<script>
 				function redirectToPage(){
 					window.location.replace("https://www.snssindia.in/${type}/${url}");
