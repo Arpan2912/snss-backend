@@ -23,7 +23,7 @@ app.use(logger('dev'));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(bodyParser.urlencoded({ extended: false, limit: '10mb' }))
+app.use(bodyParser.urlencoded({ extended: false, limit: '10mb', parameterLimit: 10000 }))
 app.use(bodyParser.json({ limit: '10mb' }));
 app.use(cors());
 

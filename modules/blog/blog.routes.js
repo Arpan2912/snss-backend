@@ -23,6 +23,7 @@ const getS3Config = () => {
 
 const upload = multer({
 	storage: multerS3({
+		limits: { fileSize: 10 * 1024 * 1024 },
 		s3: getS3Config(),
 		bucket: BUCKET_NAME,
 		metadata: function (req, file, cb) {
