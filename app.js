@@ -23,14 +23,14 @@ app.use(logger('dev'));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false, limit: '10mb' }))
+app.use(bodyParser.json({ limit: '10mb' }));
 app.use(cors());
 
 // app.use('/', indexRouter);
 app.use('/api/blog', blogRouter);
 app.use('/api/news', blogRouter);
-app.use('/*',express.static(path.join(__dirname, 'public')));
+app.use('/*', express.static(path.join(__dirname, 'public')));
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
