@@ -1744,15 +1744,39 @@ ul {
   background-color: white !important;
 }
 
-.mobile-menu-open{ 
+.mobile-menu-open {
   display: inherit !important;
   height: auto !important;
 }
 
-.mobile-menu-close{
-  display: none !important; 
+.mobile-menu-close {
+  display: none !important;
   height: 65px !important;
 }
+
+.center-page {
+  height: 100%;
+}
+
+.center-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100hh;
+}
+
+.spalsh-image-width {
+  width: 40%;
+}
+
+@media (max-width: 520px) {
+  .spalsh-image-width {
+    width: 100% !important;
+    padding: 10px;
+  }
+}
+
 
 /* .service-card {
   padding: 80px 0;
